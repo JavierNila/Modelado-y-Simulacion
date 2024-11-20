@@ -7,3 +7,5 @@ Simulación de dos colonias de hormigas, A y B, interactuando en un ambiente con
 
 
 Hola, Haziel escribió esto jejeje 
+
+Y esto lo escribió Andrea <3
