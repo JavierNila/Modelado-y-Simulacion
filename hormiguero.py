@@ -152,15 +152,3 @@ class Hormiga:
             print(f"Hormiga de colonia {self.colonia} depositó comida en el nido.")
 
 
-"""
-# Ejecución principal
-if __name__ == "__main__":
-    ambiente = Patch(50, 50)  # Crear el ambiente con una cuadrícula de 50x50
-    ambiente.agregar_flores(50, 50)  # Agregar 50 flores con energía de 50 a celdas aleatorias
-    ambiente.colocar_nido(10, 10, 'A')  # Ubicacion del nido A
-    ambiente.colocar_nido(40, 40, 'B')  # Ubicacion del nido B
-    ambiente.pob2pov()
-
-Esta ejecución ya no funciona por las modificaciones que hice de las clases, la ejecución principal será distinta
-"""
-
