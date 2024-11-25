@@ -1,3 +1,18 @@
+"""
+(Modelado y simulación 2025-I)
+Equipo: Arreguín Nila Javier
+        Cáceres Avitia Andrea
+        Maldonado Mendoza Héctor Haziel
+Proyecto Final: Colonia de hormigas
+Fecha: 25/11/2024
+Descripción: Simulación de dos colonias de hormigas, A y B, interactuando
+            en un ambiente con comida (flores). Las hormigas recorren el 
+            ambiente de forma aleatoria, recolectan comida y la llevan a 
+            sus nidos.
+            Adicionalmente, la simulación muestra el ambiente en 3D haciendo uso 
+            de la herramienta de renderizado, POV-Ray.
+
+"""
 import random
 import pov
 
@@ -151,4 +166,49 @@ class Hormiga:
             self.tieneComida = False
             print(f"Hormiga de colonia {self.colonia} depositó comida en el nido.")
 
+# Simulación principal o Ciclo principal
+if __name__ == "__main__":
+    ambiente = Patch(100, 100)  # Tamaño del ambiente
+    ambiente.agregar_flores(200, 50)  # Agregar n flores con energía n, en este caso 200 flores que proporcionen 50 de energía
+    ambiente.colocar_nido(70, 15, 'A')  # Ubicación nido de colonia A
+    ambiente.colocar_nido(1, 1, 'B')  # Ubicación nido de colonia B
 
+    # Crear hormigas para ambas colonias
+    hormigas = [Hormiga('A', 50, ambiente) for _ in range(500)]  # Cantidad de hormigas para la colonia A
+    hormigas += [Hormiga('B', 50, ambiente) for _ in range(400)] # Cantidad de hormigas para la colonia B
+
+
+
+    ciclos = 500 #Iteraciones que tendrá la simulación, tambien es la cantidad de archivos povray que se crearán
+    for ciclo in range(ciclos):
+        if all(not hormiga.viva for hormiga in hormigas):
+            print("Todas las hormigas han muerto. Fin de la simulación.")
+            break
+
+        print(f"\nCiclo {ciclo + 1}:")
+        for hormiga in hormigas:
+            if hormiga.viva:
+                if not hormiga.tieneComida:
+                    hormiga.buscarComida()
+                else:
+                    hormiga.regresarAlNido()
+
+        # Mostrar el estado del ambiente
+        #ambiente.mostrar_estado()    #Instrucción para probar la simulación sin povray, está comentada para que no se vea en la terminal de python
+                                      # Si se quiere mostrar como se ve la matriz sin povray o con la terminal de python, solo hay que descomentar el método
+
+        # Mostrar comida almacenada por las colonias
+        nido_a = ambiente.obtener_nido('A')
+        nido_b = ambiente.obtener_nido('B')
+        print(f"Colonia A: Comida almacenada = {nido_a.comidaAlmacenada}")
+        print(f"Colonia B: Comida almacenada = {nido_b.comidaAlmacenada}")
+        
+        #Esta parte crea los archivos povray
+        
+        num = str(ciclo)
+        cad= ambiente.pob2pov()
+        archivo = open("hormiguero"+ num +".pov", "w")
+        archivo.write(cad)
+        archivo.close()
+
+    print("Simulación finalizada.")
