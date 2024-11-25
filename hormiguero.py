@@ -179,7 +179,7 @@ if __name__ == "__main__":
 
 
 
-    ciclos = 500 #Iteraciones que tendrá la simulación, tambien es la cantidad de archivos povray que se crearán
+    ciclos = 500 #Iteraciones que tendrá la simulación, también es la cantidad de archivos povray que se crearán
     for ciclo in range(ciclos):
         if all(not hormiga.viva for hormiga in hormigas):
             print("Todas las hormigas han muerto. Fin de la simulación.")
@@ -195,7 +195,7 @@ if __name__ == "__main__":
 
         # Mostrar el estado del ambiente
         #ambiente.mostrar_estado()    #Instrucción para probar la simulación sin povray, está comentada para que no se vea en la terminal de python
-                                      # Si se quiere mostrar como se ve la matriz sin povray o con la terminal de python, solo hay que descomentar el método
+                                      # Si se quiere mostrar cómo se ve la matriz sin povray o con la terminal de python, sólo hay que descomentar el método
 
         # Mostrar comida almacenada por las colonias
         nido_a = ambiente.obtener_nido('A')
